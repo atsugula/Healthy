@@ -1,0 +1,28 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Home",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "pages-home"
+    },
+    {
+      "url": "/page-2",
+      "icon": "fa-solid fa-heart-pulse",
+      "name": " Healthy America",
+      "slug": "pages-page-2"
+    },
+    {
+      "url": "/page-3",
+      "icon": "fa-solid fa-person-running",
+      "name": "Healthy Sports",
+      "slug": "pages-page-3"
+    },
+    {
+      "url": "/page-4",
+      "icon": "fa-solid fa-user-doctor",
+      "name": "Nutrivita",
+      "slug": "pages-page-4"
+    }
+  ]
+}
