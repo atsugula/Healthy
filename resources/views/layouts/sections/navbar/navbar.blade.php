@@ -42,7 +42,7 @@ $containerNav = $containerNav ?? 'container-fluid';
           <i class='bx bx-sm'></i>
         </a>
       </div>
-      
+
       <!--/ Style Switcher -->
 
       <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -51,15 +51,15 @@ $containerNav = $containerNav ?? 'container-fluid';
       <div class="container-fluid">
       <form class="d-flex">
         <input class="form-control me -2 light-table-filter" data-table="table" type="text" placeholder="Buscar"
-        name="busqueda"> 
+        name="busqueda">
       </form>
       </div>
-    
+
       <!-- Subir videos -->
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-      <button class="btn btn-primary me-md-2" type="submit" href="">Subir video</button>
+        <a class="btn btn-primary" href="{{ route('videos.create') }}">Subir video</a>
       </div>
-      
+
         <!-- User -->
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
           <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">

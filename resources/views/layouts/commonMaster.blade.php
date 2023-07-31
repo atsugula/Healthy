@@ -17,7 +17,7 @@
   <link rel="canonical" href="{{ config('variables.productPage') ? config('variables.productPage') : '' }}">
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
-
+  <link rel="stylesheet" href="{{ asset('plugins/css/select2.min.css') }}">
   <!-- Include Styles -->
   @include('layouts/sections/styles')
 
@@ -30,10 +30,19 @@
   @yield('layoutContent')
   <!--/ Layout Content -->
 
-  
 
+  <!-- Sweetalert2 for alerts more nice -->
+  <script src="{{ asset('plugins/js/sweetalert2@11.js') }}"></script>
   <!-- Include Scripts -->
+  <script src="{{ asset('plugins/js/select2.min.js') }}"></script>
+  <script language="JavaScript">
+      $(document).ready(() => {
+          $('.select2').select2();
+      });
+      history.forward();
+  </script>
   @include('layouts/sections/scripts')
+  @yield('js')
 
 </body>
 

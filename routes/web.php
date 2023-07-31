@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Forms\CategoryController;
+use App\Http\Controllers\Forms\VideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +34,7 @@ $controller_path = 'App\Http\Controllers';
     Route::get('/page-3', $controller_path . '\pages\Page3@index')->name('pages-page-3');
     Route::get('/page-4', $controller_path . '\pages\Page4@index')->name('pages-page-4');
     Route::get('/playvideo', $controller_path . '\pages\playvideo@index')->name('pages-playvideo');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('videos', VideoController::class);
 
-    
 });
