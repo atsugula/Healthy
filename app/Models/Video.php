@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Video extends Model
 {
-    
+
     static $rules = [
 		'titulo' => 'required',
 		'link' => 'required',
@@ -38,6 +38,10 @@ class Video extends Model
      */
     protected $fillable = ['titulo','link','description','id_categoria'];
 
+    public function getLinkAttribute()
+    {
+      return str_replace('watch?v=', 'embed/', $this->attributes['link'] ?? '');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -46,6 +50,6 @@ class Video extends Model
     {
         return $this->hasOne('App\Models\Category', 'id', 'id_categoria');
     }
-    
+
 
 }
