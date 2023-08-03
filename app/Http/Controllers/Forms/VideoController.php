@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Video;
+use App\Traits\ImageTrait;
 
 /**
  * Class VideoController
@@ -13,6 +14,9 @@ use App\Models\Video;
  */
 class VideoController extends Controller
 {
+
+  use ImageTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +54,26 @@ class VideoController extends Controller
     {
         request()->validate(Video::$rules);
 
-        $video = Video::create($request->all());
+        $video = new Video();
+
+        $video->titulo = $request['titulo'];
+        $video->link = $request['link'];
+        $video->description = $request['description'];
+        $video->id_categoria = $request['id_categoria'];
+
+        $save = $video->save();
+
+        if ($save) {
+          /* Indicar ruta o modelo para guardar las miniaturas */
+          $modelo = "videos";
+          /* Guardar la miniatura */
+          $nameFile = $this->webImage($request, 'miniatura', $modelo, $video->id);
+          if ($nameFile['status']) {
+            $video->update([
+              'miniatura' => $nameFile['name'],
+            ]);
+          }
+        }
 
         return redirect()->route('videos.index')
             ->with('success', 'Video created successfully.');
