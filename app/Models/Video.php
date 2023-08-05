@@ -23,10 +23,10 @@ class Video extends Model
 {
 
     static $rules = [
-		'titulo' => 'required',
-		'link' => 'required',
-		'description' => 'required',
-		'id_categoria' => 'required',
+      'titulo' => 'required',
+      'link' => 'required',
+      'description' => 'required',
+      'id_categoria' => 'required',
     ];
 
     protected $perPage = 20;
@@ -36,7 +36,13 @@ class Video extends Model
      *
      * @var array
      */
-    protected $fillable = ['titulo','link','description','id_categoria'];
+    protected $fillable = [
+      'titulo',
+      'link',
+      'description',
+      'id_categoria',
+      'miniatura',
+    ];
 
     public function getLinkAttribute()
     {

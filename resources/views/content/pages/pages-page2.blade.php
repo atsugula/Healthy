@@ -1,5 +1,5 @@
 @php
-$configData = Helper::appClasses();
+    $configData = Helper::appClasses();
 @endphp
 
 @extends('layouts/layoutMaster')
@@ -7,104 +7,33 @@ $configData = Helper::appClasses();
 @section('title', 'Page 2')
 
 @section('content')
-<h4></h4>
-<link href="../resources/assets/css/imgrec.css" type="text/css" rel="stylesheet">
-<link href="../resources/assets/css/buscador.css" type="text/css" rel="stylesheet">
+    <h4></h4>
+    <link href="../resources/assets/css/imgrec.css" type="text/css" rel="stylesheet">
+    <link href="../resources/assets/css/buscador.css" type="text/css" rel="stylesheet">
 
-
-    <h1><i class="fa-solid fa-heart-pulse"></i> Healthy America</h1>  
+    @forelse ($categorias as $category)
+        <h1><i class="fa-solid fa-heart-pulse"></i> {{ $category->name }}</h1>
         <div class="list-container">
-             <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail1.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
+            @forelse ($category->videos as $video)
+                <div class="vid-list">
+                    <a class="btn btn-sm btn-outline"href="{{ route('videos.show', $video->id) }}">
+                        <img width="300" height="150"
+                            src="{{ asset('storage/' . $video->miniatura) ?? 'img/default.jpg' }}" class="thumbnail"
+                            alt="">
+                    </a>
+                    <div class="flex-div">
+                        <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
+                        <div class="vid-info">
+                            <a href="">{{ $video->titulo }}</a>
+                        </div>
                     </div>
-             </div>
-        </div>   
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail2.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>     
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail3.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>     
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail4.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>     
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail5.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>     
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail6.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>     
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail7.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>     
-        <div class="vid-list">
-                <a href="playvideo"><img src="../public/assets/img/avatars/images/thumbnail8.png" class="thumbnail"></a>
-                <div class="flex-div">
-                    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
-                    <div class="vid-info">
-                        <a href="">HEALTHY KITCHEN</a>
-                        <p>Universidad de Healthy</p>
-                        <p>15k Views 2 days</p>
-                    </div>
-             </div>
-        </div>       
-    </div>       
+                </div>
+            @empty
+                <p>No hay videos disponibles.</p>
+            @endforelse
+        </div>
+    @empty
+        <p>No hay videos disponibles.</p>
+    @endforelse
 
-</div>
-        
-<hr
-@endsection
+<hr @endsection
