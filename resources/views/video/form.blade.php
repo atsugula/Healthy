@@ -25,6 +25,11 @@
         </div>
         <div class="col-12 col-md-12">
           <div class="form-group">
+            <input type="file" name="miniatura" id="miniatura" value="{{ $video->miniatura ?? 'img/default.jpg' }}">
+          </div>
+        </div>
+        <div class="col-12 col-md-12">
+          <div class="form-group">
             {{ Form::label('description') }}
             {{ Form::textArea('description', $video->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description']) }}
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}

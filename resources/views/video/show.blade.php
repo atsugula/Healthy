@@ -1,45 +1,33 @@
-@extends('layouts.layoutMaster')
+@php
+$configData = Helper::appClasses();
+@endphp
 
-@section('template_title')
-    {{ $video->name ?? "{{ __('Show') Video" }}
-@endsection
+@extends('layouts/layoutMaster')
+
+@section('title', 'playvideo')
 
 @section('content')
-    <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Video</span>
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('videos.index') }}"> {{ __('Back') }}</a>
-                        </div>
-                    </div>
+<link href="../resources/assets/css/video.css" type="text/css" rel="stylesheet">
 
-                    <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Titulo:</strong>
-                            {{ $video->titulo }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Link:</strong>
-                            {{ $video->link }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Description:</strong>
-                            {{ $video->description }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Id Categoria:</strong>
-                            {{ $video->id_categoria }}
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+<div class="container play-container">
+     <div class="row">
+        <div class="play-video">
+          <iframe width="400" height="300" src="{{ $video->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </section>
+    </div>
+    <h3>{{ $video->titulo }}</h3>
+<hr>
+<div class="publisher">
+    <img src="../public/assets/img/avatars/Logo HA 98X98px.png">
+    <div>
+        <p>Universidad de Healthy</p>
+        <span>500k Suscriptores</span>
+    </div>
+</div>
+    <div class="vid-description">
+      {{ asset('storage/' . $video->miniatura) }}
+      {{ $video->description }}
+    </div>
+    <hr>
+</div>
 @endsection

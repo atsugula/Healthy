@@ -27,7 +27,6 @@ class Video extends Model
       'link' => 'required',
       'description' => 'required',
       'id_categoria' => 'required',
-      'miniatura' => 'required',
     ];
 
     protected $perPage = 20;

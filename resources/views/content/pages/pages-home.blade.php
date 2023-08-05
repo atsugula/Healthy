@@ -396,12 +396,17 @@
         {{-- SECTION VIDEOS --}}
         <div class="grupo">
           <h1 class="title1"><i class="fa-solid fa-heart-pulse"></i> Healthy America</h1>
-          @forelse ($videos as $video)
-            <h1>{{ $video->titulo }}</h1>
-            {{-- https://www.youtube.com/watch?v=kkd95TRDEB8 --}}
-            <iframe width="400" height="300" src="{{ $video->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          @forelse ($categorias as $category)
+            <h1>{{ $category->name }}</h1>
+            @forelse ($category->videos as $video)
+              <a class="btn btn-sm btn-outline"href="{{ route('videos.show', $video->id) }}">
+                <img width="300" height="200" src="{{ asset('storage/' . $video->miniatura) ?? 'img/default.jpg' }}" alt="">
+              </a>
+            @empty
+              <p>No hay videos disponibles.</p>
+            @endforelse
           @empty
             <p>No hay videos disponibles.</p>
           @endforelse
         </div>
-    @endsection
+@endsection

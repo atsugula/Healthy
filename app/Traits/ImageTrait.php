@@ -3,10 +3,10 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Exception;
+use Image;
 
 trait ImageTrait {
   /*
@@ -29,7 +29,7 @@ trait ImageTrait {
 
         /* Crear la carpeta que va a contener las imagenes y guardar el archivo */
         Storage::disk('public')->makeDirectory($model . '/' . $id);
-        $image->save($path . $name_encript . 'webp');
+        $image->save($path . $name_encript . '.webp');
 
         return response()->json([
           'status' => true,
@@ -53,5 +53,21 @@ trait ImageTrait {
       ]);
     }
 
+  }
+  //script para subir o mover la imagen
+  public static function moveImage(Request $request, $filename, $endFilename){
+
+    if (!empty($request->hasFile($filename))) {
+        $image = $request->file($filename);
+        $basePath = "img/videos/";
+        $file = $endFilename ?? $filename;
+        $path = "$basePath$file." . $image->guessExtension();
+        if (file_exists($path)) unlink($path);
+        $route = public_path($basePath);
+        $image->move($route, $file . '.' . $image->guessExtension());
+        return $path;
+    } else {
+        return 'NULL';
+    }
   }
 }
