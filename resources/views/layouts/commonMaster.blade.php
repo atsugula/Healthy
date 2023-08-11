@@ -18,6 +18,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
   <link rel="stylesheet" href="{{ asset('plugins/css/select2.min.css') }}">
+  @livewireStyles
   <!-- Include Styles -->
   @include('layouts/sections/styles')
 
@@ -29,12 +30,15 @@
   <!-- Layout Content -->
   @yield('layoutContent')
   <!--/ Layout Content -->
-
+  @livewireScripts
 
   <!-- Sweetalert2 for alerts more nice -->
-  <script src="{{ asset('plugins/js/sweetalert2@11.js') }}"></script>
-  <!-- Include Scripts -->
-  <script src="{{ asset('plugins/js/select2.min.js') }}"></script>
+  <script src="{{ asset('plugins/sweetalert2@11.js') }}"></script>
+  <!-- Load plugins -->
+  <script src="{{ asset('plugins/select2.min.js') }}"></script>
+  <script src="{{ asset('plugins/patternomaly.js') }}"></script>
+  <script src="{{ asset('plugins/chart.min.js') }}"></script>
+  <script src="{{ asset('plugins/parsley.min.js') }}"></script>
   <script language="JavaScript">
       $(document).ready(() => {
           $('.select2').select2();

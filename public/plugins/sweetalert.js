@@ -9,8 +9,8 @@ $('.form-delete').submit(function(e){
     cancelButtonColor: '#d33',
     confirmButtonText: 'Si, elimina esto!'
     }).then((result) => {
-      if (result.isConfirmed) {
-          this.submit();
-      }
+    if (result.isConfirmed) {
+        this.submit();
+    }
     })
 });

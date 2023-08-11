@@ -60,10 +60,11 @@ class VideoController extends Controller
         $video->link = $request['link'];
         $video->description = $request['description'];
         $video->id_categoria = $request['id_categoria'];
+        $data = $request->except(['_token', '_method']);
 
         $save = $video->save();
 
-        if ($save) {
+        if ($save && isset($data['miniatura'])) {
           /* Indicar ruta o modelo para guardar las miniaturas */
           $modelo = "videos";
           /* Guardar la miniatura */
