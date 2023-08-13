@@ -7,6 +7,5 @@
 @section('title', 'Home')
 
 @section('content')
-    @livewire('index-videos', ['key' => 'index-videos-component'])
-    @livewireScripts
+    @livewire('index-videos')
 @endsection

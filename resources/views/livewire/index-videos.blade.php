@@ -7,12 +7,11 @@
 @section('title', 'Home')
 
 @section('content')
-  <link href="../resources/assets/css/imgrec.css" type="text/css" rel="stylesheet">
-  <link href="../resources/assets/css/buscador.css" type="text/css" rel="stylesheet">
+  {{-- <link href="../resources/assets/css/imgrec.css" type="text/css" rel="stylesheet">
+  <link href="../resources/assets/css/buscador.css" type="text/css" rel="stylesheet"> --}}
 
   <div class="float-left">
-    <input wire:model="search" type="search" class="form-control" placeholder="Ingrese lo que desee buscar">
-    {{ $search }}
+    <input wire:model="search" name="search" type="search" class="form-control" id="search" placeholder="Ingrese lo que desee buscar">
   </div>
 
   <br>
@@ -41,4 +40,25 @@
   @empty
       <p>No hay videos disponibles.</p>
   @endforelse
+
+  <script>
+    document.getElementById('search').addEventListener('keydown', function() {
+      // Verificar si la tecla presionada es Enter (código de tecla 13) Corresponde al enter
+      if (event.keyCode === 13) {
+        // Obtén los parámetros actuales de la URL
+        var urlParams = new URLSearchParams(window.location.search);
+
+        // Establece el nuevo valor para el parámetro 'search'
+        urlParams.set('search', this.value);
+
+        // Actualiza la URL en la barra de direcciones con el nuevo parámetro
+        var newURL = window.location.pathname + '?' + urlParams.toString();
+        window.history.pushState({}, '', newURL);
+
+        // Carga la URL actualizada
+        window.location.href = newURL;
+      }
+    });
+  </script>
+
 @endsection

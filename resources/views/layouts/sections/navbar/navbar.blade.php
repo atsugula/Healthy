@@ -49,10 +49,10 @@ $containerNav = $containerNav ?? 'container-fluid';
 
       <!--Buscador-->
       <div class="container-fluid">
-      <form class="d-flex">
-        <input class="form-control me -2 light-table-filter" data-table="table" type="text" placeholder="Buscar"
-        name="busqueda">
-      </form>
+      {{-- <form class="d-flex">
+        <input wire:model="search" class="form-control me -2 light-table-filter" data-table="table" type="text" placeholder="Buscar"
+        name="search">
+      </form> --}}
       </div>
 
       <!-- Subir videos -->

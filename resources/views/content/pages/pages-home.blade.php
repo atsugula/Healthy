@@ -8,5 +8,4 @@
 
 @section('content')
     @livewire('index-videos')
-    @livewireScripts
 @endsection
