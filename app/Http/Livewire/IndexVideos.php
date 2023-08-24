@@ -26,7 +26,11 @@ class IndexVideos extends Component
 
       $search = $this->search;
 
-      $categorias = Category::with('videos')->where('name', 'like', '%'.$search.'%')->paginate();
+      $categorias = Category::with('videos')
+          ->orWhereHas('videos', function($query) use($search){
+            $query->where('titulo', 'like', '%'.$search.'%');
+          })
+          ->orWhere('name', 'like', '%'.$search.'%')->paginate();
 
       return view('livewire.index-videos', [
         'categorias' => $categorias,
